@@ -1,113 +1,113 @@
-
 class Node:
     def __init__(self, data):
         self.leftChild = None
         self.data = data
         self.rightChild = None
-
+    
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-
+    
+# Insertion in Binary Search Tree
     def insert(self, data):
         if self.root:
-            self.insertNode(data, self.root)
+            self.__insertNode(data, self.root)
         else:
             self.root = Node(data)
 
-    def insertNode(self, data, node):
+    def __insertNode(self, data, node):
         if data <= node.data:
             if node.leftChild:
-                self.insertNode(data, node.leftChild)
+                self.__insertNode(data, node.leftChild)
             else:
                 node.leftChild = Node(data)
         else:
             if node.rightChild:
-                self.insertNode(data, node.rightChild)
+                self.__insertNode(data, node.rightChild)
             else:
                 node.rightChild = Node(data)
-
-    def getMinValue(self):
-        return self.getMin(self.root)
-
-    def getMin(self, node):
-        if node.leftChild:
-            return self.getMin(node.leftChild)
-
-        return node.data
-
-    def getMaxValue(self):
-        return self.getMax(self.root)
-
-    def getMax(self, node):
-        if node.rightChild:
-            return self.getMax(node.rightChild)
-
-        return node.data
-
+          
+# Inorder traversal in binary serch tree
     def traverse(self):
         if self.root:
-            self.traverseInOrder(self.root)
-
-    def traverseInOrder(self, node):
+            self.__traverseInOrder(self.root)
+      
+    def __traverseInOrder(self, node):
         if node.leftChild:
-            self.traverseInOrder(node.leftChild)
-
+            self.__traverseInOrder(node.leftChild)
         print(node.data)
-
         if node.rightChild:
-            self.traverseInOrder(node.rightChild)
+            self.__traverseInOrder(node.rightChild)
 
-# removal
+# Get minimum value from binary search tree
+    def getMinValue(self):
+        return self.__getMin(self.root)
+
+    def __getMin(self, node):
+        if node.leftChild:
+            return self.__getMin(node.leftChild)
+        return node.data
+        
+# Get maximum value from binary search tree
+    def getMaxValue(self):
+        return self.__getMax(self.root)
+    
+    def __getMax(self, node):
+        if node.rightChild:
+            return self.__getMax(node.rightChild)
+        return node.data
+        
+# Deletion from Binary Search Tree
     def remove(self, data):
         if self.root:
-            self.root = self.removeNode(data, self.root)
-
-    def removeNode(self, data, node):
+            self.root = self.__removeNode(data, self.root)
+            
+    def __removeNode(self, data, node):
         if not node:
             return node
-
+        
         if data < node.data:
-            node.leftChild = self.removeNode(data, node.leftChild)
+            node.leftChild = self.__removeNode(data, node.leftChild)
         elif data > node.data:
-            node.rightChild = self.removeNode(data, node.rightChild)
+            node.rightChild = self.__removeNode(data, node.rightChild)
         else:
+            # node has no child
             if not node.leftChild and not node.rightChild:
-                print('removing leaf node...')
                 del node
                 return None
+            # node has right child
             if not node.leftChild:
-                print('removing node with single right child...')
                 tempNode = node.rightChild
                 del node
                 return tempNode
+            # node has leftchild
             elif not node.rightChild:
-                print('removing a node with single left child...')
                 tempNode = node.leftChild
                 del node
                 return tempNode
-
-            print('removing node with two children...')
-            tempNode = self.getPredecessor(node.leftChild)
+                
+            # node has two children
+            tempNode = self.__getPredecessor(node.leftChild)
             node.data = tempNode.data
-            node.leftChild = self.removeNode(tempNode.data, node.leftChild)
-
+            node.leftChild = self.__removeNode(tempNode.data, node.leftChild)
+            
         return node
-
-    def getPredecessor(self, node):
+            
+    # we can either use Successor or Predecessor for deletion
+    def __getPredecessor(self, node):
+        # pass left child to this method
         if node.rightChild:
             return self.getPredecessor(node.rightChild)
-
         return node
-
 
 bst = BinarySearchTree()
 bst.insert(5)
-bst.insert(4)
-bst.insert(50)
-bst.insert(10)
-bst.insert(20)
-bst.insert(30)
-bst.insert(100)
-bst.remove(4)
+bst.insert(3)
+bst.insert(6)
+bst.insert(2)
+bst.insert(1)
+
+bst.remove(6)
+
 bst.traverse()
+#print(bst.getMaxValue())
