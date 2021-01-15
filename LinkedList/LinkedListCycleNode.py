@@ -149,24 +149,26 @@ class LinkedList:
             count += 1
         return count
 
+    def detect_cycle_node(self):
+        fast_ptr = self.head
+        slow_ptr = self.head
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+        while fast_ptr and slow_ptr:
+            try:
+                fast_ptr = fast_ptr.next.next
+                slow_ptr = slow_ptr.next
+            except:
+                return None
+
+            if fast_ptr is slow_ptr:
+                slow_ptr = self.head
+
+                while fast_ptr is not slow_ptr:
+                    fast_ptr = fast_ptr.next
+                    slow_ptr = slow_ptr.next
+                return fast_ptr.data
+
+        return None
 
 
 ll = LinkedList()
@@ -174,7 +176,13 @@ ll.insert_at_end(1)
 ll.insert_at_end(2)
 ll.insert_at_end(3)
 ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
-ll.traverse()
+ll.insert_at_end(5)
+ll.insert_at_end(6)
+ll.insert_at_end(7)
+ll.insert_at_end(8)
+ll.insert_at_end(9)
+
+
+ll.head.next.next.next.next.next.next.next.next.next = ll.head.next.next.next
+
+print(ll.detect_cycle_node())

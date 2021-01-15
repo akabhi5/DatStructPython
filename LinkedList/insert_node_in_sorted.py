@@ -149,32 +149,58 @@ class LinkedList:
             count += 1
         return count
 
+    def sorted_insert(self, data):
+        # current = self.head
+        # previous = None
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+        # new_node = Node(data)
+
+        # while current:
+        #     if current.data >= data:
+        #         if previous:
+        #             previous.next = new_node
+        #             new_node.next = current
+        #         else:
+        #             new_node.next = self.head
+        #             self.head = new_node
+        #         return
+        #     previous = current
+        #     current = current.next
+
+        # previous.next = new_node
+        # new_node.next = current
+
+        # new_node = Node(data)
+        # current = self.head
+        # while current.next and current.next.data < new_node.data:
+        #     current = current.next
+
+        # new_node.next = current.next
+        # current.next = new_node
+
+        new_node = Node(data)
+        if self.head is None:
+            new_node.next = self.head
+            self.head = new_node
+        # if new data is less than sefl.head.data
+        elif self.head.data >= new_node.data:
+            new_node.next = self.head
+            self.head = new_node
+        else:
+            # Locate the node before the point of insertion
+            current = self.head
+            while(current.next and current.next.data < new_node.data):
+                current = current.next
+
+            new_node.next = current.next
+            current.next = new_node
 
 
 ll = LinkedList()
 ll.insert_at_end(1)
 ll.insert_at_end(2)
 ll.insert_at_end(3)
-ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
+ll.insert_at_end(5)
+ll.insert_at_end(6)
+ll.sorted_insert(0)
 ll.traverse()

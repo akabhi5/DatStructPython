@@ -1,3 +1,8 @@
+# First approach is brute force approach: compare each and every from both linked list but
+# time complexity will be O(mn)
+
+
+# other approach is using hash tables
 class Node:
     def __init__(self, data):
         self.data = data
@@ -150,31 +155,35 @@ class LinkedList:
         return count
 
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+def intersection_point(list1, list2):
+    point = {}
+    temp = list1.head
+    while temp:
+        point[temp] = True
+        temp = temp.next
+
+    temp = list2.head
+    while temp:
+        if point.get(temp):
+            return temp.data
+        temp = temp.next
+    return None
 
 
-ll = LinkedList()
-ll.insert_at_end(1)
-ll.insert_at_end(2)
-ll.insert_at_end(3)
-ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
-ll.traverse()
+ll1 = LinkedList()
+ll2 = LinkedList()
+
+ll1.insert_at_end(1)
+ll1.insert_at_end(2)
+ll1.insert_at_end(3)
+ll1.insert_at_end(4)
+ll1.insert_at_end(5)
+ll1.insert_at_end(6)
+ll1.insert_at_end(7)
+
+ll2.insert_at_end(10)
+ll2.insert_at_end(20)
+ll2.insert_at_end(30)
+ll2.head.next.next.next = ll1.head.next.next.next.next
+
+print(intersection_point(ll1, ll2))

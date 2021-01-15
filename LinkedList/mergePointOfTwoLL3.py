@@ -1,3 +1,5 @@
+# using stack - better optimized
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -150,31 +152,40 @@ class LinkedList:
         return count
 
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+def intersection_point(list1, list2):
+    list1_len, list2_len = list1.length(), list2.length()
+    temp1, temp2 = list1.head, list2.head
+    if list1_len > list2_len:
+        for _ in range(list1_len - list2_len):
+            temp1 = temp1.next
+    elif list2_len > list1_len:
+        for _ in range(list2_len - list1_len):
+            temp2 = temp2.next
+    while temp1 is not temp2:
+        temp1 = temp1.next
+        temp2 = temp2.next
+
+    if temp1:
+        return temp1.data
+    else:
+        return None
 
 
-ll = LinkedList()
-ll.insert_at_end(1)
-ll.insert_at_end(2)
-ll.insert_at_end(3)
-ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
-ll.traverse()
+ll1 = LinkedList()
+ll2 = LinkedList()
+
+ll1.insert_at_end(1)
+ll1.insert_at_end(2)
+ll1.insert_at_end(3)
+ll1.insert_at_end(4)
+ll1.insert_at_end(5)
+ll1.insert_at_end(6)
+ll1.insert_at_end(7)
+
+ll2.insert_at_end(10)
+ll2.insert_at_end(20)
+ll2.insert_at_end(30)
+ll2.head.next.next.next = ll1.head.next.next.next.next
+# ll2.head.next.next.next = ll1.head.next.next.next
+
+print(intersection_point(ll1, ll2))

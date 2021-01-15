@@ -1,0 +1,13 @@
+1. Introduction to stack -
+2. stack using array
+3. stack using linked list
+4. nearest greater to right
+5. nearest greater to left
+6. nearest smaller to right
+7. nearest smaller to left
+8. stock span problem
+9. maximum area under histogram
+10. maximum area rectangle in binary matrix -
+11. rain water trapping -
+12. minimum element in stack (with extra space) and with O(1) space -
+13. balanced brackets problem

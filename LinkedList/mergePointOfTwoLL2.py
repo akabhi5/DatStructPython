@@ -1,3 +1,5 @@
+# using stack
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -150,31 +152,82 @@ class LinkedList:
         return count
 
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+class Stack:
+    def __init__(self, size=10):
+        self.stack = []
+        self.size = size
+
+    def length(self):
+        return len(self.stack)
+
+    def isEmpty(self):
+        return len(self.stack) == 0
+
+    def isFull(self):
+        return len(self.stack) == self.size
+
+    def push(self, data):
+        if self.isFull():
+            print('stack overflow')
+            return
+        self.stack.append(data)
+
+    def pop(self):
+        if self.isEmpty():
+            print('stack underflow')
+            return None
+        return self.stack.pop()
 
 
-ll = LinkedList()
-ll.insert_at_end(1)
-ll.insert_at_end(2)
-ll.insert_at_end(3)
-ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
-ll.traverse()
+def intersection_point(list1, list2):
+    stack1 = Stack()
+    stack2 = Stack()
+
+    temp = list1.head
+    while temp:
+        stack1.push(temp)
+        temp = temp.next
+
+    temp = list2.head
+    while temp:
+        stack2.push(temp)
+        temp = temp.next
+
+    result = None
+    temp1 = stack1.pop()
+    temp2 = stack2.pop()
+    if temp1 is not temp2:
+        return result
+    else:
+        result = temp1
+
+    while not stack1.isEmpty() and not stack2.isEmpty():
+        temp1 = stack1.pop()
+        temp2 = stack2.pop()
+
+        if temp1 is not temp2:
+            return result.data
+        else:
+            result = temp1
+
+    return result
+
+
+ll1 = LinkedList()
+ll2 = LinkedList()
+
+ll1.insert_at_end(1)
+ll1.insert_at_end(2)
+ll1.insert_at_end(3)
+# ll1.insert_at_end(4)
+# ll1.insert_at_end(5)
+# ll1.insert_at_end(6)
+# ll1.insert_at_end(7)
+
+ll2.insert_at_end(10)
+ll2.insert_at_end(20)
+ll2.insert_at_end(30)
+# ll2.head.next.next.next = ll1.head.next.next.next.next
+ll2.head.next.next.next = ll1.head.next.next.next
+
+print(intersection_point(ll1, ll2))

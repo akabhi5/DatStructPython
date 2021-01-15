@@ -149,24 +149,21 @@ class LinkedList:
             count += 1
         return count
 
+    def nth_node_from_end(self, n):
+        if n < 0 or n >= self.length():
+            return None
+        else:
+            temp = self.head
+            nth_node = self.head
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+            for _ in range(n):
+                temp = temp.next
+
+            while temp != None:
+                temp = temp.next
+                nth_node = nth_node.next
+
+            return nth_node.data
 
 
 ll = LinkedList()
@@ -174,7 +171,7 @@ ll.insert_at_end(1)
 ll.insert_at_end(2)
 ll.insert_at_end(3)
 ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
-ll.traverse()
+ll.insert_at_end(5)
+ll.insert_at_end(6)
+ll.insert_at_end(7)
+print(ll.nth_node_from_end(1))

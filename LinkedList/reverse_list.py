@@ -149,32 +149,23 @@ class LinkedList:
             count += 1
         return count
 
+    def reverse(self):
+        previous = None
+        current = self.head
 
-# linkedlist = LinkedList()
-# linkedlist.insert_at_end(6)
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# linkedlist.insert_at_end(9)
-# linkedlist.insert_at_end(10)
-# print(linkedlist.get_at_position(5))
-# linkedlist.delete_value(8)
-# linkedlist.insert_at_position(3, 100)
-# linkedlist.insert_after_value(6, 300)
-# linkedlist.delete_from_end()
-# print(linkedlist.length())
-# linkedlist.insert_at_end(7)
-# linkedlist.insert_at_end(8)
-# print(linkedlist.delete_from_end())
-# print(linkedlist.delete_from_end())
-# linkedlist.traverse()
+        while current is not None:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+        self.head = previous
 
 
 ll = LinkedList()
+ll.insert_at_end(0)
 ll.insert_at_end(1)
 ll.insert_at_end(2)
 ll.insert_at_end(3)
 ll.insert_at_end(4)
-# ll.insert_at_end(5)
-ll.insert_at_position(4, 6)
-# print(ll.get_at_position(0))
+ll.reverse()
 ll.traverse()
