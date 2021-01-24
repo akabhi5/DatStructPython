@@ -1,0 +1,26 @@
+1. Introduction to Binary tree and insertion
+2. Binary tree traversal with level order traversal of binary tree -
+10. Level order traversal in reverse -
+7. Level order insertion in binary tree
+3. Find max in binary tree (recursive) -
+4. Find max in binary tree (iterative) -
+5. Searching an element in Binary tree (recursive) -
+6. Searching an element in Binary tree (iterative) -
+8. Find size of a binary tree (recursive) -
+9. Find size of a binary tree (iterative) -
+11. Delete a binary tree ' PENDING
+12. Find height of a binary tree (recursive) - FindHeight_recur.py
+12. Find height of a binary tree (iterative) - FindHeight_iter.py
+13. find deepest node of a binary tree - FindDeepest_node.py
+14. delete a node based on given data
+15. find number of leaves in a binary tree (recursive) - FindLeafCount_recur.py
+15. find number of leaves in a binary tree (iterative) - FindLeafCount_iter.py
+16. find number of full nodes in a binary tree (recursive) FindFullNode_recur.py
+16. find number of full nodes in a binary tree (iterative) - FindFullNode_iter.py
+17. find number of half nodes (with one child) (recursive) - FindHalfNode_recur.py
+17. find number of half nodes (with one child) (iterative) - FindHalfNode_iter.py
+18. check if structure of two binary tree is same or not
+19. Find diameter of a binary tree
+20. Find level having maximum sum in the binary tree
+21. print all its root to leaf paths      ---------> (from book till problem 20)
+22. 
